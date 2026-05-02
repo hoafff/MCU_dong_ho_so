@@ -9,6 +9,10 @@
 #define KEY_SW10   BIT(2)
 #define KEY_SW16   BIT(3)
 
+/* Nut chinh nhanh bo sung */
+#define KEY_SW5    BIT(4)
+#define KEY_SW9    BIT(5)
+
 uint8_t Keypad_Task10ms(void);
 
 #endif

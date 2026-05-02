@@ -2,25 +2,29 @@
 #include "board.h"
 
 /*
- * Mapping theo layout th?t trên board SN32F407_EVK mà b?n quan sát:
+ * Mapping theo layout that tren board SN32F407_EVK:
  *
- * SW2 d?ng riêng, không thu?c ma tr?n 4x4 dùng cho bài này.
+ * SW2 dung rieng, khong thuoc ma tran 4x4 dung cho bai nay.
  *
- * Ma tr?n 4x4:
+ * Ma tran 4x4:
  * Row 0: SW3   SW4   SW5   SW6
  * Row 1: SW7   SW8   SW9   SW10
  * Row 2: SW11  SW12  SW13  SW14
  * Row 3: SW16  SW15  SW17  SW18
  *
- * Bài yêu c?u ch? dùng:
+ * Nut theo yeu cau goc:
  * SW3  = SETUP
- * SW16 = H?N GI?
- * SW6  = +
- * SW10 = -
+ * SW16 = HEN GIO
+ * SW6  = +1
+ * SW10 = -1
+ *
+ * Nut cai tien:
+ * SW5  = tang nhanh
+ * SW9  = giam nhanh
  */
 static const uint8_t KEY_MAP[4][4] = {
-    { KEY_SW3,  0u,       0u,       KEY_SW6  },
-    { 0u,       0u,       0u,       KEY_SW10 },
+    { KEY_SW3,  0u,       KEY_SW5,  KEY_SW6  },
+    { 0u,       0u,       KEY_SW9,  KEY_SW10 },
     { 0u,       0u,       0u,       0u       },
     { KEY_SW16, 0u,       0u,       0u       }
 };

@@ -5,6 +5,9 @@
 #include "keypad.h"
 #include "eeprom.h"
 
+#define FAST_HOUR_STEP      6u
+#define FAST_MINUTE_STEP    15u
+
 typedef struct {
     uint8_t hour;
     uint8_t minute;
@@ -22,12 +25,11 @@ typedef enum {
 static ClockTime s_now = {0u, 0u, 0u};
 static ClockTime s_alarm = {0u, 0u, 0u};
 
-/* Bản nhập tạm khi cài báo thức */
+/* Ban nhap tam khi cai bao thuc */
 static ClockTime s_alarm_edit = {0u, 0u, 0u};
 
 static AppMode s_mode = MODE_NORMAL;
 static uint32_t s_idle_ms = 0u;
-
 
 static bool s_blink_on = true;
 
@@ -86,9 +88,9 @@ static void App_SaveAlarm(void)
 static void ExitToNormal(void)
 {
     /*
-     * Timeout chỉ thoát về chế độ thường.
-     * Không tự lưu giờ hẹn.
-     * Chỉ bấm SW16 ở MODE_ALARM_MINUTE mới ghi EEPROM.
+     * Timeout chi thoat ve che do thuong.
+     * Khong tu luu gio hen.
+     * Chi bam SW16 o MODE_ALARM_MINUTE moi ghi EEPROM.
      */
     s_mode = MODE_NORMAL;
     s_idle_ms = 0u;
@@ -121,21 +123,45 @@ static void Clock_Increment1Second(void)
     }
 }
 
+static void AdjustHourStep(ClockTime *t, int8_t step)
+{
+    uint8_t abs_step;
+
+    if (step >= 0) {
+        t->hour = (uint8_t)((t->hour + (uint8_t)step) % 24u);
+    } else {
+        abs_step = (uint8_t)((uint8_t)(-step) % 24u);
+        t->hour = (uint8_t)((t->hour + 24u - abs_step) % 24u);
+    }
+}
+
+static void AdjustMinuteStep(ClockTime *t, int8_t step)
+{
+    uint8_t abs_step;
+
+    if (step >= 0) {
+        t->minute = (uint8_t)((t->minute + (uint8_t)step) % 60u);
+    } else {
+        abs_step = (uint8_t)((uint8_t)(-step) % 60u);
+        t->minute = (uint8_t)((t->minute + 60u - abs_step) % 60u);
+    }
+}
+
 static void AdjustHour(ClockTime *t, int8_t delta)
 {
     if (delta > 0) {
-        t->hour = (uint8_t)((t->hour + 1u) % 24u);
+        AdjustHourStep(t, +1);
     } else {
-        t->hour = (t->hour == 0u) ? 23u : (uint8_t)(t->hour - 1u);
+        AdjustHourStep(t, -1);
     }
 }
 
 static void AdjustMinute(ClockTime *t, int8_t delta)
 {
     if (delta > 0) {
-        t->minute = (uint8_t)((t->minute + 1u) % 60u);
+        AdjustMinuteStep(t, +1);
     } else {
-        t->minute = (t->minute == 0u) ? 59u : (uint8_t)(t->minute - 1u);
+        AdjustMinuteStep(t, -1);
     }
 }
 
@@ -203,7 +229,8 @@ void App_HandleKeys(uint8_t keys)
     if (keys == 0u) {
         return;
     }
-		/* N?u c�i alarm dang k�u, nh?n b?t k? n�t n�o th� t?t c�i tru?c */
+
+    /* Neu alarm dang keu, nhan bat ky nut nao thi tat alarm truoc */
     if (Buzzer_IsAlarmRinging()) {
         Buzzer_AlarmStop();
     }
@@ -229,23 +256,36 @@ void App_HandleKeys(uint8_t keys)
     }
 
     if (keys & KEY_SW16) {
-    if (s_mode == MODE_NORMAL) {
-        s_alarm_edit = s_alarm;
-        s_alarm_edit.second = 0u;
-        s_mode = MODE_ALARM_HOUR;
-        s_idle_ms = 0u;
-    } else if (s_mode == MODE_ALARM_HOUR) {
-        s_mode = MODE_ALARM_MINUTE;
-        s_idle_ms = 0u;
-    } else if (s_mode == MODE_ALARM_MINUTE) {
-        s_alarm = s_alarm_edit;
-        s_alarm.second = 0u;
-        App_SaveAlarm();
-        ExitToNormal();
+        if (s_mode == MODE_NORMAL) {
+            s_alarm_edit = s_alarm;
+            s_alarm_edit.second = 0u;
+            s_mode = MODE_ALARM_HOUR;
+            s_idle_ms = 0u;
+        } else if (s_mode == MODE_ALARM_HOUR) {
+            s_mode = MODE_ALARM_MINUTE;
+            s_idle_ms = 0u;
+        } else if (s_mode == MODE_ALARM_MINUTE) {
+            s_alarm = s_alarm_edit;
+            s_alarm.second = 0u;
+            App_SaveAlarm();
+            ExitToNormal();
+        }
+
+        return;
     }
 
-    return;
-}
+    /*
+     * SW6  = tang cham +1
+     * SW10 = giam cham -1
+     *
+     * SW5  = tang nhanh:
+     *        +6 gio khi dang chinh gio
+     *        +15 phut khi dang chinh phut
+     *
+     * SW9  = giam nhanh:
+     *        -6 gio khi dang chinh gio
+     *        -15 phut khi dang chinh phut
+     */
 
     if (keys & KEY_SW6) {
         if (s_mode == MODE_SET_HOUR) {
@@ -275,6 +315,38 @@ void App_HandleKeys(uint8_t keys)
             s_alarm_edit.second = 0u;
         } else if (s_mode == MODE_ALARM_MINUTE) {
             AdjustMinute(&s_alarm_edit, -1);
+            s_alarm_edit.second = 0u;
+        }
+    }
+
+    if (keys & KEY_SW5) {
+        if (s_mode == MODE_SET_HOUR) {
+            AdjustHourStep(&s_now, (int8_t)FAST_HOUR_STEP);
+            s_now.second = 0u;
+        } else if (s_mode == MODE_SET_MINUTE) {
+            AdjustMinuteStep(&s_now, (int8_t)FAST_MINUTE_STEP);
+            s_now.second = 0u;
+        } else if (s_mode == MODE_ALARM_HOUR) {
+            AdjustHourStep(&s_alarm_edit, (int8_t)FAST_HOUR_STEP);
+            s_alarm_edit.second = 0u;
+        } else if (s_mode == MODE_ALARM_MINUTE) {
+            AdjustMinuteStep(&s_alarm_edit, (int8_t)FAST_MINUTE_STEP);
+            s_alarm_edit.second = 0u;
+        }
+    }
+
+    if (keys & KEY_SW9) {
+        if (s_mode == MODE_SET_HOUR) {
+            AdjustHourStep(&s_now, -(int8_t)FAST_HOUR_STEP);
+            s_now.second = 0u;
+        } else if (s_mode == MODE_SET_MINUTE) {
+            AdjustMinuteStep(&s_now, -(int8_t)FAST_MINUTE_STEP);
+            s_now.second = 0u;
+        } else if (s_mode == MODE_ALARM_HOUR) {
+            AdjustHourStep(&s_alarm_edit, -(int8_t)FAST_HOUR_STEP);
+            s_alarm_edit.second = 0u;
+        } else if (s_mode == MODE_ALARM_MINUTE) {
+            AdjustMinuteStep(&s_alarm_edit, -(int8_t)FAST_MINUTE_STEP);
             s_alarm_edit.second = 0u;
         }
     }
