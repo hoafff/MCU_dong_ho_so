@@ -22,9 +22,12 @@ typedef enum {
 static ClockTime s_now = {0u, 0u, 0u};
 static ClockTime s_alarm = {0u, 0u, 0u};
 
+/* Bản nhập tạm khi cài báo thức */
+static ClockTime s_alarm_edit = {0u, 0u, 0u};
+
 static AppMode s_mode = MODE_NORMAL;
 static uint32_t s_idle_ms = 0u;
-static bool s_alarm_dirty = false;
+
 
 static bool s_blink_on = true;
 
@@ -78,16 +81,15 @@ static void App_SaveAlarm(void)
     EEPROM_WriteByte(1u, h);
     EEPROM_WriteByte(2u, m);
     EEPROM_WriteByte(3u, chk);
-
-    s_alarm_dirty = false;
 }
 
 static void ExitToNormal(void)
 {
-    if (s_alarm_dirty) {
-        App_SaveAlarm();
-    }
-
+    /*
+     * Timeout chỉ thoát về chế độ thường.
+     * Không tự lưu giờ hẹn.
+     * Chỉ bấm SW16 ở MODE_ALARM_MINUTE mới ghi EEPROM.
+     */
     s_mode = MODE_NORMAL;
     s_idle_ms = 0u;
     LedD6_Set(false);
@@ -158,12 +160,12 @@ static void App_UpdateDisplay(void)
 
     case MODE_ALARM_HOUR:
         blink_mask = BIT(0) | BIT(1);
-        show = s_alarm;
+        show = s_alarm_edit;
         break;
 
     case MODE_ALARM_MINUTE:
         blink_mask = BIT(2) | BIT(3);
-        show = s_alarm;
+        show = s_alarm_edit;
         break;
 
     case MODE_NORMAL:
@@ -184,9 +186,10 @@ void App_Init(void)
     s_now.minute = 0u;
     s_now.second = 0u;
 
+    s_alarm_edit = s_alarm;
+
     s_mode = MODE_NORMAL;
     s_idle_ms = 0u;
-    s_alarm_dirty = false;
     s_blink_on = true;
 
     Display_SetBlinkOn(true);
@@ -200,7 +203,7 @@ void App_HandleKeys(uint8_t keys)
     if (keys == 0u) {
         return;
     }
-		/* N?u c�i alarm dang k�u, nh?n b?t k? n�t n�o th� t?t c�i tru?c */
+		/* N?u c�i alarm dang k�u, nh?n b?t k? n�t n�o th� t?t c�i tru?c */
     if (Buzzer_IsAlarmRinging()) {
         Buzzer_AlarmStop();
     }
@@ -226,19 +229,23 @@ void App_HandleKeys(uint8_t keys)
     }
 
     if (keys & KEY_SW16) {
-        if (s_mode == MODE_NORMAL) {
-            s_mode = MODE_ALARM_HOUR;
-            s_idle_ms = 0u;
-        } else if (s_mode == MODE_ALARM_HOUR) {
-            s_mode = MODE_ALARM_MINUTE;
-            s_idle_ms = 0u;
-        } else if (s_mode == MODE_ALARM_MINUTE) {
-            s_alarm_dirty = true;   
-            ExitToNormal();
-        }
-
-        return;
+    if (s_mode == MODE_NORMAL) {
+        s_alarm_edit = s_alarm;
+        s_alarm_edit.second = 0u;
+        s_mode = MODE_ALARM_HOUR;
+        s_idle_ms = 0u;
+    } else if (s_mode == MODE_ALARM_HOUR) {
+        s_mode = MODE_ALARM_MINUTE;
+        s_idle_ms = 0u;
+    } else if (s_mode == MODE_ALARM_MINUTE) {
+        s_alarm = s_alarm_edit;
+        s_alarm.second = 0u;
+        App_SaveAlarm();
+        ExitToNormal();
     }
+
+    return;
+}
 
     if (keys & KEY_SW6) {
         if (s_mode == MODE_SET_HOUR) {
@@ -248,13 +255,11 @@ void App_HandleKeys(uint8_t keys)
             AdjustMinute(&s_now, +1);
             s_now.second = 0u;
         } else if (s_mode == MODE_ALARM_HOUR) {
-            AdjustHour(&s_alarm, +1);
-            s_alarm.second = 0u;
-            s_alarm_dirty = true;
+            AdjustHour(&s_alarm_edit, +1);
+            s_alarm_edit.second = 0u;
         } else if (s_mode == MODE_ALARM_MINUTE) {
-            AdjustMinute(&s_alarm, +1);
-            s_alarm.second = 0u;
-            s_alarm_dirty = true;
+            AdjustMinute(&s_alarm_edit, +1);
+            s_alarm_edit.second = 0u;
         }
     }
 
@@ -266,13 +271,11 @@ void App_HandleKeys(uint8_t keys)
             AdjustMinute(&s_now, -1);
             s_now.second = 0u;
         } else if (s_mode == MODE_ALARM_HOUR) {
-            AdjustHour(&s_alarm, -1);
-            s_alarm.second = 0u;
-            s_alarm_dirty = true;
+            AdjustHour(&s_alarm_edit, -1);
+            s_alarm_edit.second = 0u;
         } else if (s_mode == MODE_ALARM_MINUTE) {
-            AdjustMinute(&s_alarm, -1);
-            s_alarm.second = 0u;
-            s_alarm_dirty = true;
+            AdjustMinute(&s_alarm_edit, -1);
+            s_alarm_edit.second = 0u;
         }
     }
 }
