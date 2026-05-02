@@ -1,0 +1,96 @@
+Dependencies for Project 'hhhh', Target 'Target_1': (DO NOT MODIFY !)
+CompilerVersion: 6240000::V6.24::ARMCLANG
+F (.\src\app.c)(0x69F5C7F1)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./include-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-D__UVISION_VERSION="543" -DSN32F400 -D_RTE_-o ./objects/app.o -MMD)
+I (include\app.h)(0x69F5B3E3)
+I (include\sn32f407_regs.h)(0x69F5D077)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\SN32F400.h)(0x69D47092)
+I (E:\20252\New folder (2)\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0.h)(0x69CA98D7)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\system_SN32F400.h)(0x69D47092)
+I (include\display7seg.h)(0x69F5B3E3)
+I (include\buzzer_led.h)(0x69F5C635)
+I (include\keypad.h)(0x69F5B3E3)
+I (include\eeprom.h)(0x69F5B3E3)
+F (.\src\board.c)(0x69F5B3F5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./include-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-D__UVISION_VERSION="543" -DSN32F400 -D_RTE_-o ./objects/board.o -MMD)
+I (include\board.h)(0x69F5B3E3)
+I (include\gpio.h)(0x69F5B3E3)
+I (include\sn32f407_regs.h)(0x69F5D077)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\SN32F400.h)(0x69D47092)
+I (E:\20252\New folder (2)\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0.h)(0x69CA98D7)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\system_SN32F400.h)(0x69D47092)
+F (.\src\buzzer_led.c)(0x69F5D07A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./include-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-D__UVISION_VERSION="543" -DSN32F400 -D_RTE_-o ./objects/buzzer_led.o -MMD)
+I (include\buzzer_led.h)(0x69F5C635)
+I (include\board.h)(0x69F5B3E3)
+I (include\gpio.h)(0x69F5B3E3)
+I (include\sn32f407_regs.h)(0x69F5D077)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\SN32F400.h)(0x69D47092)
+I (E:\20252\New folder (2)\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0.h)(0x69CA98D7)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\system_SN32F400.h)(0x69D47092)
+F (.\src\clock.c)(0x69F5D07E)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./include-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-D__UVISION_VERSION="543" -DSN32F400 -D_RTE_-o ./objects/clock.o -MMD)
+I (include\clock.h)(0x69F5B3E3)
+I (include\sn32f407_regs.h)(0x69F5D077)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\SN32F400.h)(0x69D47092)
+I (E:\20252\New folder (2)\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0.h)(0x69CA98D7)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\system_SN32F400.h)(0x69D47092)
+F (.\src\display7seg.c)(0x69F5B3F5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./include-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-D__UVISION_VERSION="543" -DSN32F400 -D_RTE_-o ./objects/display7seg.o -MMD)
+I (include\display7seg.h)(0x69F5B3E3)
+I (include\board.h)(0x69F5B3E3)
+I (include\gpio.h)(0x69F5B3E3)
+I (include\sn32f407_regs.h)(0x69F5D077)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\SN32F400.h)(0x69D47092)
+I (E:\20252\New folder (2)\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0.h)(0x69CA98D7)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\system_SN32F400.h)(0x69D47092)
+F (.\src\eeprom.c)(0x69F5D07B)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./include-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-D__UVISION_VERSION="543" -DSN32F400 -D_RTE_-o ./objects/eeprom.o -MMD)
+I (include\eeprom.h)(0x69F5B3E3)
+I (include\sn32f407_regs.h)(0x69F5D077)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\SN32F400.h)(0x69D47092)
+I (E:\20252\New folder (2)\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0.h)(0x69CA98D7)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\system_SN32F400.h)(0x69D47092)
+F (.\src\gpio.c)(0x69F5B3F5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./include-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-D__UVISION_VERSION="543" -DSN32F400 -D_RTE_-o ./objects/gpio.o -MMD)
+I (include\gpio.h)(0x69F5B3E3)
+I (include\sn32f407_regs.h)(0x69F5D077)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\SN32F400.h)(0x69D47092)
+I (E:\20252\New folder (2)\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0.h)(0x69CA98D7)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\system_SN32F400.h)(0x69D47092)
+F (.\src\i2c_hw.c)(0x69F5B3F5)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./include-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-D__UVISION_VERSION="543" -DSN32F400 -D_RTE_-o ./objects/i2c_hw.o -MMD)
+I (include\i2c_hw.h)(0x69F5B3E3)
+I (include\sn32f407_regs.h)(0x69F5D077)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\SN32F400.h)(0x69D47092)
+I (E:\20252\New folder (2)\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0.h)(0x69CA98D7)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\system_SN32F400.h)(0x69D47092)
+F (.\src\keypad.c)(0x69F5D445)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./include-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-D__UVISION_VERSION="543" -DSN32F400 -D_RTE_-o ./objects/keypad.o -MMD)
+I (include\keypad.h)(0x69F5B3E3)
+I (include\sn32f407_regs.h)(0x69F5D077)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\SN32F400.h)(0x69D47092)
+I (E:\20252\New folder (2)\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0.h)(0x69CA98D7)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\system_SN32F400.h)(0x69D47092)
+I (include\board.h)(0x69F5B3E3)
+I (include\gpio.h)(0x69F5B3E3)
+F (.\src\main.c)(0x69F5D07F)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./include-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-D__UVISION_VERSION="543" -DSN32F400 -D_RTE_-o ./objects/main.o -MMD)
+I (include\clock.h)(0x69F5B3E3)
+I (include\board.h)(0x69F5B3E3)
+I (include\gpio.h)(0x69F5B3E3)
+I (include\sn32f407_regs.h)(0x69F5D077)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\SN32F400.h)(0x69D47092)
+I (E:\20252\New folder (2)\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0.h)(0x69CA98D7)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\system_SN32F400.h)(0x69D47092)
+I (include\systick.h)(0x69F5B3E3)
+I (include\i2c_hw.h)(0x69F5B3E3)
+I (include\rtc.h)(0x69F5D079)
+I (include\keypad.h)(0x69F5B3E3)
+I (include\app.h)(0x69F5B3E3)
+F (.\src\rtc.c)(0x69F5D07D)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./include-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-D__UVISION_VERSION="543" -DSN32F400 -D_RTE_-o ./objects/rtc.o -MMD)
+I (include\rtc.h)(0x69F5D079)
+F (.\src\systick.c)(0x69F5D07C)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./include-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-D__UVISION_VERSION="543" -DSN32F400 -D_RTE_-o ./objects/systick.o -MMD)
+I (include\systick.h)(0x69F5B3E3)
+I (include\sn32f407_regs.h)(0x69F5D077)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\SN32F400.h)(0x69D47092)
+I (E:\20252\New folder (2)\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0.h)(0x69CA98D7)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\system_SN32F400.h)(0x69D47092)
+I (include\display7seg.h)(0x69F5B3E3)
+I (include\buzzer_led.h)(0x69F5C635)
+I (include\rtc.h)(0x69F5D079)
+F (RTE/Device/SN32F407F/startup_SN32F400.s)(0x69D47092)(--target=arm-arm-none-eabi -mcpu=cortex-m0 -masm=auto  -Wa,armasm,--diag_suppress=A1950W -c-gdwarf-4-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-Wa,armasm,--pd,"__UVISION_VERSION SETA 543" -Wa,armasm,--pd,"SN32F400 SETA 1" -Wa,armasm,--pd,"_RTE_ SETA 1"-o ./objects/startup_sn32f400.o)
+F (RTE/Device/SN32F407F/system_SN32F400.c)(0x69F5C95A)(-xc -std=c99 --target=arm-arm-none-eabi -mcpu=cortex-m0 -c-fno-rtti -funsigned-char -fshort-enums -fshort-wchar-gdwarf-4 -O0 -ffunction-sections -Wall -Wextra -Wno-packed -Wno-reserved-id-macro -Wno-unused-macros -Wno-documentation-unknown-command -Wno-documentation -Wno-license-management -Wno-parentheses-equality -Wno-reserved-identifier -I ./include-I./RTE/_Target_1-I"E:/20252/New folder (2)/ARM/CMSIS/6.3.0/CMSIS/Core/Include"-I"E:/20252/New folder (2)/SONiX/SN32F4_DFP/1.1.1/Device/Include"-D__UVISION_VERSION="543" -DSN32F400 -D_RTE_-o ./objects/system_sn32f400.o -MMD)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\SN32F400.h)(0x69D47092)
+I (E:\20252\New folder (2)\ARM\CMSIS\6.3.0\CMSIS\Core\Include\core_cm0.h)(0x69CA98D7)
+I (E:\20252\New folder (2)\SONiX\SN32F4_DFP\1.1.1\Device\Include\system_SN32F400.h)(0x69D47092)
